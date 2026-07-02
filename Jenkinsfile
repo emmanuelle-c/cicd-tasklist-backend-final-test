@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Publish tests on Jenkins') {
             steps {
-                junit '**/reports/junit.xml'
+                junit '**/reports/*.xml'
             }
         }
         stage('Analysis with SonarQube') {
