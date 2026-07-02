@@ -1,0 +1,11 @@
+node_modules
+dist
+.vscode
+.git
+.gitignore
+.env
+coverage
+.prisma
+*.log
+npm-debug.log
+.idea
