@@ -13,6 +13,7 @@ vi.mock("../../services/task.service.js", () => ({
 
 import * as taskService from "../../services/task.service.js";
 import * as taskController from "../../controllers/task.controller.js";
+import { afterEach } from "node:test";
 
 const mockService = vi.mocked(taskService);
 
@@ -44,8 +45,15 @@ function createMockRequest(overrides: Partial<Request> = {}): Request {
 }
 
 describe("TaskController", () => {
+	let consoleSpy: ReturnType<typeof vi.spyOn>;
+	
 	beforeEach(() => {
 		vi.clearAllMocks();
+		consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+	});
+
+	afterEach(() => {
+		consoleSpy.mockRestore();
 	});
 
 	describe("getAllTasks", () => {
