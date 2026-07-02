@@ -53,7 +53,7 @@ pipeline {
         }
         stage('Push Docker image to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'emmanuelle-docker-password', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'emmanuelle-curiant-dockerhub-password', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                     sh 'docker tag cicd-tasklist-backend $DOCKER_USERNAME/cicd-tasklist-backend:latest'
                     sh 'docker push $DOCKER_USERNAME/cicd-tasklist-backend:latest'
